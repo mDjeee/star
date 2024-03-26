@@ -1,8 +1,21 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 
 import { routes } from './app.routes';
+import { provideHttpClient, withJsonpSupport } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)]
+  providers: [
+    importProvidersFrom([
+    ]),
+    provideRouter(
+      routes,
+      withViewTransitions(),
+      withComponentInputBinding(),
+      withInMemoryScrolling()
+    ),
+    provideAnimations(),
+    provideHttpClient(withJsonpSupport())
+  ]
 };
