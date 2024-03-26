@@ -1,0 +1,14 @@
+<nav class="p-2">
+  <ul class="flex gap-2 inter-400 capitalize">
+    <li *ngFor="let item of navItems">
+      <a
+        [routerLink]="item"
+        class="
+          cursor-pointer block relative w-fit
+          after:block after:content-[''] after:absolute after:h-[3px]
+          after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100
+          after:transition after:duration-300 after:origin-center"
+      >{{ item }}</a>
+    </li>
+  </ul>
+</nav>
