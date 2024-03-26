@@ -4,14 +4,15 @@ import { IFilm, IFilmResponse } from '../../shared/interfaces/films.interface';
 import { map, take } from 'rxjs';
 import { IPaginateResponse } from '../../shared/interfaces/paginate.interface';
 import { SharedModule } from '../../shared/shared.module';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-films',
   standalone: true,
   imports: [
     SharedModule,
-    NgForOf
+    NgForOf,
+    NgIf
   ],
   templateUrl: './films.component.html',
   styleUrl: './films.component.scss'

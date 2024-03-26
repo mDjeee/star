@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { NavLinkComponent } from './components/nav-link/nav-link.component';
 import { CardComponent } from './components/card/card.component';
+import { MapChipsPipe } from './pipes/map-chips.pipe';
 
 
 
@@ -10,6 +11,7 @@ import { CardComponent } from './components/card/card.component';
   declarations: [
     NavLinkComponent,
     CardComponent,
+    MapChipsPipe,
   ],
   imports: [
     CommonModule,
@@ -18,6 +20,7 @@ import { CardComponent } from './components/card/card.component';
   exports: [
     NavLinkComponent,
     CardComponent,
+    MapChipsPipe,
   ]
 })
 export class SharedModule { }

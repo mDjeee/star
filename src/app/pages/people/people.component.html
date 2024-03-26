@@ -1,1 +1,42 @@
-<p>people works!</p>
+<div class="grid gap-2 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+  <div *ngFor="let card of people | mapChips">
+    <app-card [card]="card">
+      <ng-template #cardTitleTemplate>
+        <div>{{ card.name }}</div>
+      </ng-template>
+      <ng-template #cardSubTitleTemplate>
+        <div class="flex justify-between">
+          <div>Born</div>
+          <div>{{ card.birth_year.slice(0,10) }}</div>
+        </div>
+      </ng-template>
+
+      <ng-template #cardCaptionTemplate>
+      </ng-template>
+
+      <ng-template #cardBodyTemplate>
+        <ul>
+          <li>Gender: {{ card?.gender }}</li>
+          <li>Eye color: {{ card?.eye_color }}</li>
+          <li>Height: {{ card?.height }}</li>
+          <li>Mass: {{ card?.mass }}</li>
+          <li>Hair color: {{ card?.hair_color }}</li>
+          <li>Skin color: {{ card?.skin_color }}</li>
+        </ul>
+      </ng-template>
+
+      <ng-template #cardChipsTemplate>
+        <ul>
+          <li
+            *ngFor="let item of card.chips"
+            class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+          >
+            #{{ item.name }} ({{ item.val }})
+          </li>
+
+        </ul>
+      </ng-template>
+    </app-card>
+
+  </div>
+</div>

@@ -1,5 +1,37 @@
 <div class="grid gap-2 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
-  <div *ngFor="let card of films">
-    <app-card [card]="card"></app-card>
+  <div *ngFor="let card of films | mapChips">
+    <app-card [card]="card">
+      <ng-template #cardTitleTemplate>
+        <div>{{ card.title }}</div>
+      </ng-template>
+      <ng-template #cardSubTitleTemplate>
+        <div class="flex justify-between">
+          <div>Episode: {{ card.episode_id }}</div>
+          <div>{{ card.release_date.slice(0,10) }}</div>
+        </div>
+      </ng-template>
+
+      <ng-template #cardCaptionTemplate>
+        <ul>
+          <li>Director: {{ card?.director }}</li>
+          <li>Producer: {{ card?.producer }}</li>
+        </ul>
+      </ng-template>
+
+      <ng-template #cardBodyTemplate>{{ card.opening_crawl }}</ng-template>
+
+      <ng-template #cardChipsTemplate>
+        <ul>
+          <li
+            *ngFor="let item of card.chips"
+            class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+          >
+            #{{ item.name }} ({{ item.val }})
+          </li>
+
+        </ul>
+      </ng-template>
+    </app-card>
+
   </div>
 </div>
