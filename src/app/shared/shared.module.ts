@@ -5,6 +5,7 @@ import { NavLinkComponent } from './components/nav-link/nav-link.component';
 import { CardComponent } from './components/card/card.component';
 import { MapChipsPipe } from './pipes/map-chips.pipe';
 import { BaseButtonComponent } from './components/base-button/base-button.component';
+import { PlaceloadComponent } from './components/placeload/placeload.component';
 
 
 
@@ -14,6 +15,7 @@ import { BaseButtonComponent } from './components/base-button/base-button.compon
     CardComponent,
     MapChipsPipe,
     BaseButtonComponent,
+    PlaceloadComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { BaseButtonComponent } from './components/base-button/base-button.compon
     CardComponent,
     MapChipsPipe,
     BaseButtonComponent,
+    PlaceloadComponent,
   ]
 })
 export class SharedModule { }

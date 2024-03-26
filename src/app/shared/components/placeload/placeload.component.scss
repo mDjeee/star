@@ -1,0 +1,20 @@
+.nui-placeload {
+  background: linear-gradient(90deg, hsla(0, 0%, 100%, .15) 8%, hsla(0, 0%, 100%, .24) 18%, hsla(0, 0%, 100%, .15) 33%);
+  background-size: 1200px 104px;
+  position: relative;
+}
+
+.animate-nui-placeload {
+  animation: nui-placeload 1s linear infinite forwards;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+  animation-name: nui-placeload;
+  animation-timeline: auto;
+  animation-range-start: normal;
+  animation-range-end: normal;
+}
