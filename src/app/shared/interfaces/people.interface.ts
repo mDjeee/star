@@ -16,6 +16,7 @@ export interface IPerson {
   starships: string[];
   vehicles: string[];
   url: string;
+  chips?: any[];
 }
 
 export type IPeopleResponse = IPaginateResponse<IPerson>

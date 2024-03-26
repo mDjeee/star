@@ -27,7 +27,7 @@ export class PeopleComponent implements OnInit {
       .pipe(
         take(1)
       )
-      .subscribe((res) => {
+      .subscribe((res: IPeopleResponse) => {
         this.people = res.results
       })
   }

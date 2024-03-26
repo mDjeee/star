@@ -15,6 +15,7 @@ export interface IFilm {
   url: string;
   created: string;
   edited: string;
+  chips?: any[];
 }
 
 export type IFilmResponse = IPaginateResponse<IFilm>
