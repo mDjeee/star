@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { NavComponent } from './components/nav/nav.component';
 import { RouterLink } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -16,7 +17,8 @@ import { RouterLink } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterLink
+    SharedModule,
+    RouterLink,
   ]
 })
 export class CoreModule { }
