@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
       routes,
       withViewTransitions(),
       withComponentInputBinding(),
-      withInMemoryScrolling()
+      withInMemoryScrolling({ scrollPositionRestoration: 'enabled' })
     ),
     provideAnimations(),
     provideHttpClient(withJsonpSupport())

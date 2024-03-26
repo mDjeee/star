@@ -4,6 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NavComponent } from './components/nav/nav.component';
 import { RouterLink } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { FilmsService } from './services/films.service';
 
 
 
@@ -19,6 +20,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     SharedModule,
     RouterLink,
-  ]
+  ],
+  providers: [],
 })
 export class CoreModule { }
