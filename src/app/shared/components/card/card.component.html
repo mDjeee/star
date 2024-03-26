@@ -1,0 +1,41 @@
+<div class="relative group w-full h-full cursor-pointer rounded flex bg-zinc-900 flex-col overflow-hidden shadow-lg px-6">
+  <div class="w-full font-bold my-2">{{ card?.title }}</div>
+
+  <div class="flex justify-between">
+    <div>Episode {{ card?.episode_id }}</div>
+    <div>{{ card?.release_date?.slice(0,4) }}</div>
+  </div>
+
+  <div class="py-4">
+    <div class="mb-2">
+      <ul>
+        <li>Director: {{ card?.director }}</li>
+        <li>Producer: {{ card?.producer }}</li>
+      </ul>
+    </div>
+    <p class="text-gray-500 text-base">
+      {{ card?.opening_crawl  }}
+    </p>
+  </div>
+
+  <div class="text-gray-700 mt-auto justify-end text-end">
+    <ul>
+      <li class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Characters: ({{ card?.characters?.length }})</li>
+      <li class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Planets ({{ card?.planets?.length }})</li>
+      <li class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Species ({{ card?.species?.length }})</li>
+      <li class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Starships ({{ card?.starships?.length }})</li>
+      <li class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Vehicles ({{ card?.vehicles?.length }})</li>
+    </ul>
+  </div>
+
+  <div
+    class="
+      w-16 h-16
+      absolute -bottom-8 -left-8
+      rotate-45
+      bg-black
+      group-hover:bg-white
+      group-hover:transition-all duration-500 ease-in-out
+    "
+  ></div>
+</div>
