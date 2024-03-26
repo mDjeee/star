@@ -1,6 +1,8 @@
 <div class="bg montserrat-400">
   <div class="container mx-auto px-1">
     <app-header></app-header>
-    <router-outlet></router-outlet>
+    <main class="relative overflow-auto">
+      <router-outlet #outlet></router-outlet>
+    </main>
   </div>
 </div>

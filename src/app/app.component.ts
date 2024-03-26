@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
 import { CoreModule } from './core/core.module';
+import { fader, slider } from './route-animations';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,11 @@ import { CoreModule } from './core/core.module';
     CoreModule,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  animations: [
+    fader,
+    slider
+  ]
 })
 export class AppComponent {
   title = 'Star Wars';
@@ -19,5 +24,9 @@ export class AppComponent {
 
   getRouteAnimationData() {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
+  }
+
+  prepareRoute(outlet: any) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }
