@@ -27,6 +27,7 @@ import { PlaceloadComponent } from './components/placeload/placeload.component';
     MapChipsPipe,
     BaseButtonComponent,
     PlaceloadComponent,
+    CommonModule
   ]
 })
 export class SharedModule { }

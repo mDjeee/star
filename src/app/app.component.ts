@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { fader, slider } from './route-animations';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ import { fader, slider } from './route-animations';
     slider
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Star Wars';
 
   constructor(private contexts: ChildrenOutletContexts) {}
@@ -28,5 +29,8 @@ export class AppComponent {
 
   prepareRoute(outlet: any) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
+
+  ngOnInit(): void {
   }
 }
