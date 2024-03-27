@@ -11,6 +11,8 @@ import { tokenInterceptor } from './core/interceptors/token.interceptor';
 import { provideEffects } from '@ngrx/effects';
 import { planetsReducer } from './store/planets/planets.reducer';
 import { PlanetsEffects } from './store/planets/planets.effects';
+import { FilmsEffects } from './store/films/films.effects';
+import { filmsReducer } from './store/films/films.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,8 +24,9 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       routerStore: routerReducer,
       planets: planetsReducer,
+      films: filmsReducer
     }),
-    provideEffects([PlanetsEffects]),
+    provideEffects([PlanetsEffects, FilmsEffects]),
     provideRouterStore({ }),
     provideStoreDevtools({
       maxAge: 25,

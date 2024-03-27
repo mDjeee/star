@@ -11,8 +11,9 @@ export class FilmsService {
 
   constructor(private http: HttpClient) { }
 
-  getFilms() {
-    return this.http.get<IFilmResponse>(environment.apiUrl + '/api/films');
+  getFilms(page: number = 1) {
+    const query = page <=1 ? '' : `?page=${page}`
+    return this.http.get<IFilmResponse>(environment.apiUrl + '/api/films' + query);
   }
 
   getFilmById(id: string) {

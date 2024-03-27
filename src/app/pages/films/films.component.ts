@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FilmsService } from '../../core/services/films.service';
-import { IFilm, IFilmResponse } from '../../shared/interfaces/films.interface';
-import { map, take } from 'rxjs';
-import { IPaginateResponse } from '../../shared/interfaces/paginate.interface';
 import { SharedModule } from '../../shared/shared.module';
 import { NgForOf, NgIf } from '@angular/common';
+import { FilmsFacade } from '../../store/films/films.facade';
 
 @Component({
   selector: 'app-films',
@@ -18,19 +15,13 @@ import { NgForOf, NgIf } from '@angular/common';
   styleUrl: './films.component.scss'
 })
 export class FilmsComponent implements OnInit {
-  films: IFilm[] = [];
-  constructor(private filmsService: FilmsService) {
+  constructor(public filmsFacade: FilmsFacade) { }
+
+  ngOnInit() {
+    this.filmsFacade.fetchFilms(1);
   }
-  ngOnInit(): void {
-    this.filmsService.getFilms()
-      .pipe(
-        take(1)
-      )
-      .subscribe(
-        (res: IPaginateResponse<IFilm>) => {
-          this.films = res.results;
-          console.log(res)
-        }
-      )
+
+  pageChanged(page: number) {
+    this.filmsFacade.fetchFilms(page);
   }
 }
