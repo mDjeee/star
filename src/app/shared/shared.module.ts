@@ -7,6 +7,7 @@ import { MapChipsPipe } from './pipes/map-chips.pipe';
 import { BaseButtonComponent } from './components/base-button/base-button.component';
 import { PlaceloadComponent } from './components/placeload/placeload.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { CardLoaderComponent } from './components/card-loader/card-loader.component';
 
 
 
@@ -18,6 +19,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     BaseButtonComponent,
     PlaceloadComponent,
     PaginationComponent,
+    CardLoaderComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     PlaceloadComponent,
     CommonModule,
     PaginationComponent,
+    CardLoaderComponent,
   ]
 })
 export class SharedModule { }
