@@ -16,7 +16,7 @@ export class PlanetsEffects {
     this.action$.pipe(
       ofType(loadPlanets),
       exhaustMap((action) => {
-        return this.planetsService.getPlanets().pipe(
+        return this.planetsService.getPlanets(action.page).pipe(
           tap(data => console.log(data)),
           map((data: IPaginateResponse<IPlanet>) => loadPlanetsSuccess({
             count: data.count,

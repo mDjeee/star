@@ -1,0 +1,48 @@
+
+<nav aria-label="Page navigation example">
+  <ul class="inline-flex -space-x-px text-base h-10">
+    <li>
+      <button
+        [disabled]="!previous || loading"
+        (click)="changePage(previous?.slice(-1))"
+        [ngClass]="{
+        'bg-slate-950': !previous || loading,
+        'hover:bg-gray-900 hover:text-white': previous,
+        'bg-slate-900': !(!previous || loading)
+        }"
+        class="flex items-center justify-center px-4 h-10 ms-0 leading-tight
+        text-gray-500 border rounded-s-lg
+        border-gray-700 text-gray-400"
+      >Previous</button>
+    </li>
+
+    <li *ngFor="let page of pages; let i = index">
+      <button
+        (click)="changePage(i+1)"
+        [disabled]="loading"
+        [ngClass]="{
+        'hover:bg-gray-900 hover:text-white bg-slate-900': !loading,
+        'bg-slate-800 text-white': currentPage === i+1,
+        }"
+        class="flex items-center justify-center px-4 h-10 leading-tight
+        text-gray-500 border border-gray-700
+        bg-slate-900 text-gray-400"
+      >{{ i + 1 }}</button>
+    </li>
+
+    <li>
+      <button
+        [disabled]="!next || loading"
+        (click)="changePage(next?.slice(-1))"
+        [ngClass]="{
+        'bg-slate-950': !next || loading,
+        'hover:bg-gray-900 hover:text-white': next,
+        'bg-slate-900': !(!next || loading)
+        }"
+        class="flex items-center justify-center px-4 h-10 ms-0 leading-tight
+        text-gray-500 border rounded-e-lg
+        border-gray-700 text-gray-400"
+      >Next</button>
+    </li>
+  </ul>
+</nav>

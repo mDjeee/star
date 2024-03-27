@@ -1,1 +1,56 @@
-<p>planets works!</p>
+<div class="flex flex-col gap-2">
+  <div class="flex justify-between my-2">
+    <div class="text-xl font-bold">
+      Planets
+    </div>
+
+    <app-pagination
+      (emitPage)="pageChanged($event)"
+      [pages]="pages"
+      [next]="next"
+      [previous]="previous"
+      [loading]="loading"
+    ></app-pagination>
+  </div>
+
+  <div class="grid gap-2 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+    <div *ngFor="let card of planets | mapChips">
+      <app-card [card]="card">
+        <ng-template #cardTitleTemplate>
+          <div>{{ card.name }}</div>
+        </ng-template>
+        <ng-template #cardSubTitleTemplate>
+          <div class="flex flex-col">
+            <div>Population: {{ card.population }}</div>
+            <div>Diameter: {{card.diameter}}</div>
+          </div>
+        </ng-template>
+
+        <ng-template #cardBodyTemplate>
+          <div class="flex flex-col">
+            <div>Climate: {{ card.climate }}</div>
+            <div>Terrain: {{ card.terrain }}</div>
+            <div>Gravity: {{ card.cravity }}</div>
+            <div>Orbital period: {{ card.orbital_period }}</div>
+            <div>Rotation period: {{ card.rotation_period }}</div>
+            <div>Surface water: {{ card.surface_water }}</div>
+          </div>
+        </ng-template>
+
+        <ng-template #cardChipsTemplate>
+          <ul>
+            <li
+              *ngFor="let item of card.chips"
+              class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+            >
+              #{{ item.name }} ({{ item.val }})
+            </li>
+
+          </ul>
+        </ng-template>
+      </app-card>
+
+    </div>
+  </div>
+
+</div>

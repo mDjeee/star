@@ -10,8 +10,9 @@ export class PlanetsService {
 
   constructor(private http: HttpClient) { }
 
-  getPlanets() {
-    return this.http.get<IPlanetResponse>(environment.apiUrl + '/api/planets');
+  getPlanets(page: number) {
+    const query = page <=1 ? '' : `?page=${page}`;
+    return this.http.get<IPlanetResponse>(environment.apiUrl + '/api/planets' + query);
   }
 
   getPlanetById(id: string) {

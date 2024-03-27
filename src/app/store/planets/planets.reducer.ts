@@ -26,6 +26,9 @@ const _planetsReducer = createReducer(planetsState,
     return {
       ...state,
       planets: [],
+      count: 0,
+      next: null,
+      previous: null,
       error: action.error,
       loading: false,
     }

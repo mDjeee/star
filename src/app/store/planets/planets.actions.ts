@@ -5,7 +5,8 @@ export const LOAD_PLANETS_SUCCESS = '[Planets] load planets success';
 export const LOAD_PLANETS_FAIL = '[Planets] load planets fail';
 
 export const loadPlanets = createAction(LOAD_PLANETS, props<{
-  loading: boolean
+  loading: boolean,
+  page: number;
 }>());
 export const loadPlanetsSuccess = createAction(
   LOAD_PLANETS_SUCCESS,
