@@ -11,7 +11,7 @@ export class PeopleService {
   constructor(private http: HttpClient) { }
 
   getPeople() {
-    return this.http.get<IPeopleResponse>(environment.apiUrl + '/api/people/');
+    return this.http.get<IPeopleResponse>(environment.apiUrl + '/api/people');
   }
 
   getPersonById(id: string) {

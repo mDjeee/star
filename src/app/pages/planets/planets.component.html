@@ -6,15 +6,15 @@
 
     <app-pagination
       (emitPage)="pageChanged($event)"
-      [pages]="pages"
-      [next]="next"
-      [previous]="previous"
-      [loading]="loading"
+      [count]="count$ | async"
+      [next]="next$ | async"
+      [previous]="previous$ | async"
+      [loading]="loading$ | async"
     ></app-pagination>
   </div>
 
   <div class="grid gap-2 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
-    <div *ngFor="let card of planets | mapChips">
+    <div *ngFor="let card of planets$ | async | mapChips">
       <app-card [card]="card">
         <ng-template #cardTitleTemplate>
           <div>{{ card.name }}</div>

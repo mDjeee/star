@@ -16,7 +16,7 @@
       >Previous</button>
     </li>
 
-    <li *ngFor="let page of pages; let i = index">
+    <li *ngFor="let page of createPages(count); let i = index">
       <button
         (click)="changePage(i+1)"
         [disabled]="loading"

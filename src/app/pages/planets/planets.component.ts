@@ -4,6 +4,7 @@ import { loadPlanets } from '../../store/planets/planets.actions';
 import { planetsSelector } from '../../store/planets/planets.selector';
 import { SharedModule } from '../../shared/shared.module';
 import { NgForOf, NgIf } from '@angular/common';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-planets',
@@ -17,28 +18,32 @@ import { NgForOf, NgIf } from '@angular/common';
   styleUrl: './planets.component.scss'
 })
 export class PlanetsComponent {
-  planets: any = [];
-  next: string | null = null;
-  previous: string | null = null;
-  loading: boolean = false;
-  count: number = 0;
-  pages: number[] = [];
+  planets$: Observable<any>;
+  next$: Observable<string | null>;
+  previous$: Observable<string | null>;
+  loading$: Observable<boolean | null>;
+  count$: Observable<number>;
 
-  constructor(
-    private store: Store,
-    ) {
+  constructor(private store: Store) {
+    this.planets$ = this.store.select(planetsSelector).pipe(
+      map(state => state.planets)
+    );
+    this.next$ = this.store.select(planetsSelector).pipe(
+      map(state => state.next)
+    );
+    this.previous$ = this.store.select(planetsSelector).pipe(
+      map(state => state.previous)
+    );
+    this.loading$ = this.store.select(planetsSelector).pipe(
+      map(state => state.loading)
+    );
+    this.count$ = this.store.select(planetsSelector).pipe(
+      map(state => state.count),
+    );
   }
 
-  loadInitialData(page: any) {
+  loadInitialData(page: any = 1) {
     this.store.dispatch(loadPlanets({ loading: true, page }));
-    this.store.select(planetsSelector).subscribe(state => {
-      this.planets = state.planets;
-      this.count = state.count;
-      this.next = state.next;
-      this.previous = state.previous;
-      this.loading = state.loading;
-      this.pages = Array(Math.ceil(this.count/10)).fill(1);
-    })
   }
 
   pageChanged(page: any) {

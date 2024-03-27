@@ -8,10 +8,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './pagination.component.scss'
 })
 export class PaginationComponent implements OnInit, OnDestroy {
-  @Input() pages: any = [];
+  @Input() count: number | null;
   @Input() next: string | null | undefined;
   @Input() previous: string | null | undefined;
-  @Input() loading: boolean = false;
+  @Input() loading: boolean | null = false;
   @Output() emitPage = new EventEmitter<number>();
   currentPage: number | undefined;
 
@@ -30,6 +30,11 @@ export class PaginationComponent implements OnInit, OnDestroy {
         queryParams: pageParams,
       }
     )
+  }
+
+  createPages(count: number | null) {
+    const pages = count ? Math.ceil(count/10) : 1;
+    return Array(pages).fill(0);
   }
 
   ngOnDestroy(): void {
