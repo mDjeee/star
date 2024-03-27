@@ -4,7 +4,8 @@ import { loadPlanets } from '../../store/planets/planets.actions';
 import { planetsSelector } from '../../store/planets/planets.selector';
 import { SharedModule } from '../../shared/shared.module';
 import { NgForOf, NgIf } from '@angular/common';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-planets',
@@ -17,14 +18,25 @@ import { map, Observable } from 'rxjs';
   templateUrl: './planets.component.html',
   styleUrl: './planets.component.scss'
 })
-export class PlanetsComponent {
-  planets$: Observable<any>;
-  next$: Observable<string | null>;
-  previous$: Observable<string | null>;
-  loading$: Observable<boolean | null>;
-  count$: Observable<number>;
+export class PlanetsComponent implements OnInit {
+  planets$: Observable<any> = of([]);
+  next$: Observable<string | null> = of(null);
+  previous$: Observable<string | null> = of(null);
+  loading$: Observable<boolean | null> = of(false);
+  count$: Observable<number> = of(0);
 
-  constructor(private store: Store) {
+  constructor(private store: Store) { }
+
+  loadInitialData(page: any = 1) {
+    this.loading$ = of(true);
+    this.store.dispatch(loadPlanets({ loading: true, page }));
+  }
+
+  pageChanged(page: any) {
+    this.loadInitialData(page);
+  }
+
+  ngOnInit(): void {
     this.planets$ = this.store.select(planetsSelector).pipe(
       map(state => state.planets)
     );
@@ -40,13 +52,5 @@ export class PlanetsComponent {
     this.count$ = this.store.select(planetsSelector).pipe(
       map(state => state.count),
     );
-  }
-
-  loadInitialData(page: any = 1) {
-    this.store.dispatch(loadPlanets({ loading: true, page }));
-  }
-
-  pageChanged(page: any) {
-    this.loadInitialData(page);
   }
 }
