@@ -1,9 +1,15 @@
 import { ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withViewTransitions } from '@angular/router';
+import {
+  provideRouter,
+  RouterOutlet,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+  withViewTransitions
+} from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors, withJsonpSupport } from '@angular/common/http';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
@@ -21,12 +27,19 @@ import { starshipsReducer } from './store/starships/starships.reducer';
 import { StarshipsEffects } from './store/starships/starships.effects';
 import { vehiclesReducer } from './store/vehicles/vehicles.reducer';
 import { VehiclesEffects } from './store/vehicles/vehicles.effects';
+import { BrowserModule } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    importProvidersFrom([]),
-    provideRouter(routes, withViewTransitions(), withComponentInputBinding(), withInMemoryScrolling({ scrollPositionRestoration: 'enabled' })),
-    provideAnimations(),
+    importProvidersFrom([
+      BrowserModule, BrowserAnimationsModule
+    ]),
+    provideRouter(
+      routes,
+      withViewTransitions(),
+      withComponentInputBinding(),
+      withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
+    ),
     provideAnimations(),
     provideHttpClient(withJsonpSupport(), withInterceptors([tokenInterceptor])),
     provideStore({

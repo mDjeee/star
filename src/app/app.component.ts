@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CoreModule } from './core/core.module';
-import { fader, slider } from './animations/route-animations';
+import { slideInAnimation } from './animations/route-animations';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +13,7 @@ import { fader, slider } from './animations/route-animations';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   animations: [
-    fader,
-    slider
+    slideInAnimation,
   ]
 })
 export class AppComponent implements OnInit {
@@ -23,5 +22,9 @@ export class AppComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+  }
+
+  prepareRoute(outlet: RouterOutlet){
+    return outlet.activatedRouteData['state'];
   }
 }
