@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { NgForOf } from '@angular/common';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -7,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.scss'
 })
-export class PaginationComponent implements OnInit, OnDestroy {
+export class PaginationComponent implements OnInit {
   @Input() count: number | null;
   @Input() next: string | null | undefined;
   @Input() previous: string | null | undefined;
@@ -35,9 +34,6 @@ export class PaginationComponent implements OnInit, OnDestroy {
   createPages(count: number | null) {
     const pages = count ? Math.ceil(count/10) : 1;
     return Array(pages).fill(0);
-  }
-
-  ngOnDestroy(): void {
   }
 
   ngOnInit(): void {

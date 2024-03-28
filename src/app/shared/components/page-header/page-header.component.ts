@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { SharedModule } from '../../shared.module';
 
 @Component({
   selector: 'app-page-header',

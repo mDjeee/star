@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SpeciesFacade } from '../../store/species/species.facade';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-species',
@@ -17,10 +18,13 @@ import { SharedModule } from '../../shared/shared.module';
 })
 export class SpeciesComponent implements OnInit {
 
-  constructor(public speciesFacade: SpeciesFacade) { }
+  constructor(public speciesFacade: SpeciesFacade, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.speciesFacade.fetchSpecies(1);
+    this.activatedRoute.queryParams.subscribe(params => {
+      const currentPage = parseInt(params['page'], 10) || 1;
+      this.speciesFacade.fetchSpecies(currentPage);
+    })
   }
 
   pageChanged(page: number) {

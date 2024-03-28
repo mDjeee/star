@@ -5,7 +5,8 @@ export const routes: Routes = [
   { path: 'home',
     title: 'Star Wars',
     data: { animation: 'isRight' },
-    component: HomeComponent
+    loadComponent: () => import('./pages/home/home.component')
+      .then(mod => mod.HomeComponent)
   },
   { path: 'films',
     title: 'Films',

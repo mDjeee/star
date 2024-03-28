@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
 import { PeopleFacade } from '../../store/people/people.facade';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-people',
@@ -15,10 +16,13 @@ import { PeopleFacade } from '../../store/people/people.facade';
   styleUrl: './people.component.scss'
 })
 export class PeopleComponent implements OnInit {
-  constructor(public peopleFacade: PeopleFacade) { }
+  constructor(public peopleFacade: PeopleFacade, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.peopleFacade.fetchPeople(1);
+    this.activatedRoute.queryParams.subscribe(params => {
+      const currentPage = parseInt(params['page'], 10) || 1;
+      this.peopleFacade.fetchPeople(currentPage);
+    })
   }
 
   pageChanged(page: number) {

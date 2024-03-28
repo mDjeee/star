@@ -1,5 +1,4 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
-import { IFilm } from '../../interfaces/films.interface';
 
 @Component({
   selector: 'app-card',

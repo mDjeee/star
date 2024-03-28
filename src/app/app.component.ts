@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { fader, slider } from './route-animations';
 
