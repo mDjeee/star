@@ -11,13 +11,13 @@ export const slideInAnimation = trigger('slideInAnimation', [
 
     group([
       query(':enter', [
-        style({ transform: 'translateY(100%)' }),
-        animate('0.3s ease-out', style({ transform: 'translateY(0%)' }))
+        style({ transform: 'translateX(100%)' }),
+        animate('0.3s ease-out', style({ transform: 'translateX(0%)' }))
       ], { optional: true }),
 
       query(':leave', [
-        style({ transform: 'translateY(0%)' }),
-        animate('0.3s ease-out', style({ transform: 'translateY(100%)' }))
+        style({ transform: 'translateX(0%)' }),
+        animate('0.3s ease-out', style({ transform: 'translateX(-100%)' }))
       ], { optional: true }),
     ])
   ])
