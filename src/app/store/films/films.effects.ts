@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { loadFilms, loadFilmsFail, loadFilmsSuccess } from './films.actions';
 import { catchError, exhaustMap, map, of } from 'rxjs';
-import { IPaginateResponse } from '../../shared/interfaces/paginate.interface';
-import { IFilm } from '../../shared/interfaces/films.interface';
+import { IFilmResponse } from '../../shared/interfaces/films.interface';
 import { FilmsService } from '../../core/services/films.service';
 
 
@@ -17,7 +16,7 @@ export class FilmsEffects {
       ofType(loadFilms),
       exhaustMap((action) => {
         return this.filmsService.getFilms(action.page).pipe(
-          map((data: IPaginateResponse<IFilm>) => loadFilmsSuccess({
+          map((data: IFilmResponse) => loadFilmsSuccess({
             count: data.count,
             next: data.next,
             previous: data.previous,

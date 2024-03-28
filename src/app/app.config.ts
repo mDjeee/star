@@ -15,6 +15,8 @@ import { FilmsEffects } from './store/films/films.effects';
 import { filmsReducer } from './store/films/films.reducer';
 import { PeopleEffects } from './store/people/people.effects';
 import { peopleReducer } from './store/people/people.reducer';
+import { speciesReducer } from './store/species/species.reducer';
+import { SpeciesEffects } from './store/species/species.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,11 +30,13 @@ export const appConfig: ApplicationConfig = {
       planets: planetsReducer,
       films: filmsReducer,
       people: peopleReducer,
+      species: speciesReducer,
     }),
     provideEffects([
       PlanetsEffects,
       FilmsEffects,
       PeopleEffects,
+      SpeciesEffects,
     ]),
     provideRouterStore({ }),
     provideStoreDevtools({

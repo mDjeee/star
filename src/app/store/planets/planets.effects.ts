@@ -3,8 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { loadPlanets, loadPlanetsFail, loadPlanetsSuccess } from './planets.actions';
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import { PlanetsService } from '../../core/services/planets.service';
-import { IPaginateResponse } from '../../shared/interfaces/paginate.interface';
-import { IPlanet } from '../../shared/interfaces/planets.interface';
+import { IPlanetResponse } from '../../shared/interfaces/planets.interface';
 
 
 @Injectable()
@@ -17,7 +16,7 @@ export class PlanetsEffects {
       ofType(loadPlanets),
       exhaustMap((action) => {
         return this.planetsService.getPlanets(action.page).pipe(
-          map((data: IPaginateResponse<IPlanet>) => loadPlanetsSuccess({
+          map((data: IPlanetResponse) => loadPlanetsSuccess({
             count: data.count,
             next: data.next,
             previous: data.previous,

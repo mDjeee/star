@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { loadPeople, loadPeopleSuccess, loadPeopleFail } from './people.actions';
 import { catchError, exhaustMap, map, of } from 'rxjs';
-import { IPaginateResponse } from '../../shared/interfaces/paginate.interface';
-import { IPerson } from '../../shared/interfaces/people.interface';
+import { IPeopleResponse } from '../../shared/interfaces/people.interface';
 import { PeopleService } from '../../core/services/people.service';
 
 
@@ -17,7 +16,7 @@ export class PeopleEffects {
       ofType(loadPeople),
       exhaustMap((action) => {
         return this.peopleService.getPeople(action.page).pipe(
-          map((data: IPaginateResponse<IPerson>) => loadPeopleSuccess({
+          map((data: IPeopleResponse) => loadPeopleSuccess({
             count: data.count,
             next: data.next,
             previous: data.previous,
