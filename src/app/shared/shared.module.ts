@@ -10,6 +10,7 @@ import { CardLoaderComponent } from './components/card-loader/card-loader.compon
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { UserNavComponent } from './components/user-nav/user-nav.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
+import { ErrorComponent } from './components/error/error.component';
 
 
 
@@ -24,6 +25,7 @@ import { UserCardComponent } from './components/user-card/user-card.component';
     PageHeaderComponent,
     UserNavComponent,
     UserCardComponent,
+    ErrorComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +43,7 @@ import { UserCardComponent } from './components/user-card/user-card.component';
     PageHeaderComponent,
     UserNavComponent,
     UserCardComponent,
+    ErrorComponent,
   ]
 })
 export class SharedModule { }

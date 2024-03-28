@@ -4,6 +4,8 @@
 
     <app-page-header (pageChanged)="pageChanged($event)" [model]="planetsModel" title="Planets" />
 
+    <app-error *ngIf="planetsModel.error" [error]="planetsModel.error"></app-error>
+
     <div class="grid gap-2 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
       <ng-container *ngIf="planetsModel.loading">
         <app-card-loader *ngFor="let c of [1,2,3,4,5]"></app-card-loader>
