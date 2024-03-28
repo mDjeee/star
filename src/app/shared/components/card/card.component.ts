@@ -1,9 +1,11 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { FADEINOUT } from '../../../animations/fade-in-out.animations';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
+  animations: [FADEINOUT]
 })
 export class CardComponent {
   @Input() card: any = undefined;

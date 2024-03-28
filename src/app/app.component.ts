@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CoreModule } from './core/core.module';
-import { fader, slider } from './route-animations';
+import { fader, slider } from './animations/route-animations';
 
 @Component({
   selector: 'app-root',
