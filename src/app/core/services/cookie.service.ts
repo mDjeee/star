@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CookieService {
 
-  private cookieStore = {};
+  private cookieStore: { [key: string]: string } = {};
   constructor() {
     this.parseCookies(document.cookie);
   }

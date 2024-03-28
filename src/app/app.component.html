@@ -1,7 +1,7 @@
 <div class="bg bg-slate-950 montserrat-400 flex flex-col">
   <app-header></app-header>
   <div id="content" class="flex-auto flex flex-col container mx-auto px-1">
-    <main [@slideInAnimation]="prepareRoute(o)" class="flex-auto grow pb-4">
+    <main [@slideInAnimation]="prepareRoute(o)" class="flex flex-col flex-auto grow pb-4">
       <router-outlet #o="outlet"></router-outlet>
     </main>
   </div>

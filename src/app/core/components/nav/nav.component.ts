@@ -13,6 +13,7 @@ export class NavComponent {
     'planets',
     'species',
     'starships',
-    'vehicles'
+    'vehicles',
+    'login'
   ]
 }

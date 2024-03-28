@@ -8,6 +8,12 @@ export class JwtTokenService {
 
   jwtToken: string;
   decodedToken: { [key: string]: string };
+
+  header = {
+    alg: 'HS256',
+    typ: 'JWT'
+  }
+
   constructor() { }
 
   setToken(token: string) {
@@ -22,26 +28,24 @@ export class JwtTokenService {
     }
   }
 
+  encodeToken(user: any) {
+    const encodedHeader = btoa(JSON.stringify(this.header));
+    const encodedPayload = btoa(JSON.stringify(user));
+    const signingInput = `${encodedHeader}.${encodedPayload}`;
+    return signingInput;
+  }
+
   getDecodeToken() {
     return jwtDecode(this.jwtToken);
   }
 
   getUser() {
     this.decodeToken();
-    return this.decodedToken ? this.decodedToken.displayname : null;
+    return this.decodedToken ? this.decodedToken['email'] : null;
   }
 
   getExpiryTime() {
     this.decodeToken();
-    return this.decodedToken ? this.decodedToken.exp : null;
-  }
-
-  isTokenExpired(): boolean {
-    const expiryTime: number = +this.getExpiryTime();
-    if (expiryTime) {
-      return ((1000 * expiryTime) - (new Date()).getTime()) < 5000;
-    } else {
-      return false;
-    }
+    return this.decodedToken ? this.decodedToken['exp'] : null;
   }
 }

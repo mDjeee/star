@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   { path: 'home',
@@ -40,9 +40,16 @@ export const routes: Routes = [
   },
   { path: 'vehicles',
     title: 'Vehicles',
+    canActivate: [authGuard],
     data: { state: 'seven' },
     loadComponent: () => import('./pages/vehicles/vehicles.component')
       .then(mod => mod.VehiclesComponent)
+  },
+  { path: 'login',
+    title: 'Login',
+    data: { state: 'eight' },
+    loadComponent: () => import('./pages/login/login.component')
+      .then(mod => mod.LoginComponent)
   },
   {
     path: '',
