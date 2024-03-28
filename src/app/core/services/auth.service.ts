@@ -4,6 +4,8 @@ import { IUser } from '../../shared/interfaces/user.interface';
 import { CookieService } from './cookie.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { AlertService } from './alert.service';
+import { AlertType } from '../../shared/enums/alert.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +15,16 @@ export class AuthService {
     private jwtTokenService: JwtTokenService,
     private cookieService: CookieService,
     private router: Router,
+    private toastService: AlertService,
     ) { }
 
   signIn(user: IUser) {
-    console.log('Form submitted!', user);
-    const res = this.jwtTokenService.encodeToken(user);
-    console.log('token user', res);
-    const decoded = this.jwtTokenService.getDecodeToken();
-    console.log(decoded)
+    this.jwtTokenService.encodeToken(user);
     this.router.navigateByUrl('/')
+    this.toastService.setAlert({
+      type: AlertType.success,
+      text: 'Successfully logged in'
+    })
   }
 
   logout(){
