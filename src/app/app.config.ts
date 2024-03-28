@@ -13,6 +13,8 @@ import { planetsReducer } from './store/planets/planets.reducer';
 import { PlanetsEffects } from './store/planets/planets.effects';
 import { FilmsEffects } from './store/films/films.effects';
 import { filmsReducer } from './store/films/films.reducer';
+import { PeopleEffects } from './store/people/people.effects';
+import { peopleReducer } from './store/people/people.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,9 +26,14 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       routerStore: routerReducer,
       planets: planetsReducer,
-      films: filmsReducer
+      films: filmsReducer,
+      people: peopleReducer,
     }),
-    provideEffects([PlanetsEffects, FilmsEffects]),
+    provideEffects([
+      PlanetsEffects,
+      FilmsEffects,
+      PeopleEffects,
+    ]),
     provideRouterStore({ }),
     provideStoreDevtools({
       maxAge: 25,

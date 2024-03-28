@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { IPlanet } from '../../shared/interfaces/planets.interface';
 
 export const LOAD_PLANETS = '[Planets] load planets';
 export const LOAD_PLANETS_SUCCESS = '[Planets] load planets success';
@@ -11,7 +12,7 @@ export const loadPlanets = createAction(LOAD_PLANETS, props<{
 export const loadPlanetsSuccess = createAction(
   LOAD_PLANETS_SUCCESS,
   props<{
-    planets: any,
+    planets: IPlanet[],
     loading: boolean,
     count: number;
     next: string | null,

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { fader, slider } from './route-animations';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -21,15 +20,7 @@ import { Store } from '@ngrx/store';
 export class AppComponent implements OnInit {
   title = 'Star Wars';
 
-  constructor(private contexts: ChildrenOutletContexts) {}
-
-  getRouteAnimationData() {
-    return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
-  }
-
-  prepareRoute(outlet: any) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
-  }
+  constructor() {}
 
   ngOnInit(): void {
   }

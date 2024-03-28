@@ -15,6 +15,7 @@ export interface IPlanet {
   created: string;
   edited: string;
   url: string;
+  chips?: any[];
 }
 
 export type IPlanetResponse = IPaginateResponse<IPlanet>;

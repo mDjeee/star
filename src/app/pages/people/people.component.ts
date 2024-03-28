@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PeopleService } from '../../core/services/people.service';
-import { take } from 'rxjs';
-import { IPeopleResponse, IPerson } from '../../shared/interfaces/people.interface';
 import { NgForOf, NgIf } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
+import { PeopleFacade } from '../../store/people/people.facade';
 
 @Component({
   selector: 'app-people',
@@ -17,20 +15,13 @@ import { SharedModule } from '../../shared/shared.module';
   styleUrl: './people.component.scss'
 })
 export class PeopleComponent implements OnInit {
-  people: IPerson[] = [];
+  constructor(public peopleFacade: PeopleFacade) { }
 
-  constructor(private peopleService: PeopleService) {
+  ngOnInit() {
+    this.peopleFacade.fetchPeople(1);
   }
 
-  ngOnInit(): void {
-    this.peopleService.getPeople()
-      .pipe(
-        take(1)
-      )
-      .subscribe((res: IPeopleResponse) => {
-        this.people = res.results
-      })
+  pageChanged(page: number) {
+    this.peopleFacade.fetchPeople(page);
   }
-
-  protected readonly Object = Object;
 }

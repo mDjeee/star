@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { IFilm } from '../../shared/interfaces/films.interface';
 
 export const LOAD_FILMS = '[Films] load films';
 export const LOAD_FILMS_SUCCESS = '[Films] load films success';
@@ -11,7 +12,7 @@ export const loadFilms = createAction(LOAD_FILMS, props<{
 export const loadFilmsSuccess = createAction(
   LOAD_FILMS_SUCCESS,
   props<{
-    films: any,
+    films: IFilm[],
     loading: boolean,
     count: number;
     next: string | null,
