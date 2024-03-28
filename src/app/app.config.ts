@@ -19,6 +19,8 @@ import { speciesReducer } from './store/species/species.reducer';
 import { SpeciesEffects } from './store/species/species.effects';
 import { starshipsReducer } from './store/starships/starships.reducer';
 import { StarshipsEffects } from './store/starships/starships.effects';
+import { vehiclesReducer } from './store/vehicles/vehicles.reducer';
+import { VehiclesEffects } from './store/vehicles/vehicles.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,6 +36,7 @@ export const appConfig: ApplicationConfig = {
       people: peopleReducer,
       species: speciesReducer,
       starships: starshipsReducer,
+      vehicles: vehiclesReducer,
     }),
     provideEffects([
       PlanetsEffects,
@@ -41,6 +44,7 @@ export const appConfig: ApplicationConfig = {
       PeopleEffects,
       SpeciesEffects,
       StarshipsEffects,
+      VehiclesEffects,
     ]),
     provideRouterStore({ }),
     provideStoreDevtools({

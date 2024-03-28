@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { VehiclesFacade } from '../../store/vehicles/vehicles.facade';
 
 @Component({
   selector: 'app-vehicles',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
   templateUrl: './vehicles.component.html',
   styleUrl: './vehicles.component.scss'
 })
-export class VehiclesComponent {
+export class VehiclesComponent implements OnInit {
+  constructor(public vehiclesFacade: VehiclesFacade) { }
 
+  ngOnInit() {
+    this.vehiclesFacade.fetchVehicles(1);
+  }
+
+  pageChanged(page: number) {
+    this.vehiclesFacade.fetchVehicles(page);
+  }
 }
