@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SpeciesFacade } from '../../store/species/species.facade';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
@@ -15,7 +15,7 @@ import { SharedModule } from '../../shared/shared.module';
   templateUrl: './species.component.html',
   styleUrl: './species.component.scss'
 })
-export class SpeciesComponent {
+export class SpeciesComponent implements OnInit {
 
   constructor(public speciesFacade: SpeciesFacade) { }
 
