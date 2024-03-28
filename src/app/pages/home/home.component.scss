@@ -1,0 +1,12 @@
+.bg {
+  position: absolute;
+  width: 100vw;
+  height: calc(100vh - 60px);
+  top: 44px;
+  left: 0;
+  z-index: 1;
+  background-image: url('/assets/images/bg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
