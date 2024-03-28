@@ -14,6 +14,5 @@ export class NavComponent {
     'species',
     'starships',
     'vehicles',
-    'login'
   ]
 }

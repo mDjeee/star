@@ -51,6 +51,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/login/login.component')
       .then(mod => mod.LoginComponent)
   },
+  { path: 'logout',
+    title: 'Logout',
+    data: { state: 'nine' },
+    loadComponent: () => import('./pages/logout/logout.component')
+      .then(mod => mod.LogoutComponent)
+  },
   {
     path: '',
     redirectTo: 'home',

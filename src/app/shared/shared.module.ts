@@ -8,6 +8,7 @@ import { PlaceloadComponent } from './components/placeload/placeload.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { CardLoaderComponent } from './components/card-loader/card-loader.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { UserNavComponent } from './components/user-nav/user-nav.component';
 
 
 
@@ -20,6 +21,7 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
     PaginationComponent,
     CardLoaderComponent,
     PageHeaderComponent,
+    UserNavComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
     PaginationComponent,
     CardLoaderComponent,
     PageHeaderComponent,
+    UserNavComponent,
   ]
 })
 export class SharedModule { }
