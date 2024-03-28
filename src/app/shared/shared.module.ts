@@ -4,7 +4,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NavLinkComponent } from './components/nav-link/nav-link.component';
 import { CardComponent } from './components/card/card.component';
 import { MapChipsPipe } from './pipes/map-chips.pipe';
-import { BaseButtonComponent } from './components/base-button/base-button.component';
 import { PlaceloadComponent } from './components/placeload/placeload.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { CardLoaderComponent } from './components/card-loader/card-loader.component';
@@ -17,7 +16,6 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
     NavLinkComponent,
     CardComponent,
     MapChipsPipe,
-    BaseButtonComponent,
     PlaceloadComponent,
     PaginationComponent,
     CardLoaderComponent,
@@ -32,7 +30,6 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
     NavLinkComponent,
     CardComponent,
     MapChipsPipe,
-    BaseButtonComponent,
     PlaceloadComponent,
     CommonModule,
     PaginationComponent,
