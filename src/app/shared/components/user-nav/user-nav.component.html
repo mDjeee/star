@@ -1,4 +1,4 @@
-<div class="flex text-xl ps-2">
+<div class="flex gap-2 text-xl ps-2">
   <button
     *ngIf="!isLogged()"
     class="px-4 capitalize py-2 bg-gray-800"
@@ -11,4 +11,9 @@
   >
     <app-nav-link [link]="'logout'" ></app-nav-link>
   </button>
+  <div class="">
+    <app-user-card
+      *ngIf="isLogged()"
+    ></app-user-card>
+  </div>
 </div>

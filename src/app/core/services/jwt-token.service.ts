@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { CookieService } from './cookie.service';
+import { IUser } from '../../shared/interfaces/user.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class JwtTokenService {
 
   setToken(token: string) {
     if(token) {
-      this.cookieService.set('token17angular', token)
+      this.cookieService.set(environment.token, token)
     }
   }
 
@@ -27,8 +29,8 @@ export class JwtTokenService {
     return signingInput;
   }
 
-  getDecodeToken() {
-    const token = this.cookieService.get('token17angular');
+  getDecodeToken(): IUser | null {
+    const token = this.cookieService.get(environment.token);
     if(token) {
       return jwtDecode(token)
     }

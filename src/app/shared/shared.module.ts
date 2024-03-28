@@ -9,6 +9,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { CardLoaderComponent } from './components/card-loader/card-loader.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { UserNavComponent } from './components/user-nav/user-nav.component';
+import { UserCardComponent } from './components/user-card/user-card.component';
 
 
 
@@ -22,6 +23,7 @@ import { UserNavComponent } from './components/user-nav/user-nav.component';
     CardLoaderComponent,
     PageHeaderComponent,
     UserNavComponent,
+    UserCardComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { UserNavComponent } from './components/user-nav/user-nav.component';
     CardLoaderComponent,
     PageHeaderComponent,
     UserNavComponent,
+    UserCardComponent,
   ]
 })
 export class SharedModule { }

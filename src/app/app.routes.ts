@@ -10,30 +10,35 @@ export const routes: Routes = [
   },
   { path: 'films',
     title: 'Films',
+    canActivate: [authGuard],
     data: { state: 'two' },
     loadComponent: () => import('./pages/films/films.component')
       .then(mod => mod.FilmsComponent)
   },
   { path: 'people',
     title: 'People',
+    canActivate: [authGuard],
     data: { state: 'three' },
     loadComponent: () => import('./pages/people/people.component')
       .then(mod => mod.PeopleComponent)
   },
   { path: 'planets',
     title: 'Planets',
+    canActivate: [authGuard],
     data: { state: 'four' },
     loadComponent: () => import('./pages/planets/planets.component')
       .then(mod => mod.PlanetsComponent)
   },
   { path: 'species',
     title: 'Species',
+    canActivate: [authGuard],
     data: { state: 'five' },
     loadComponent: () => import('./pages/species/species.component')
       .then(mod => mod.SpeciesComponent)
   },
   { path: 'starships',
     title: 'Starships',
+    canActivate: [authGuard],
     data: { state: 'six' },
     loadComponent: () => import('./pages/starships/starships.component')
       .then(mod => mod.StarshipsComponent)

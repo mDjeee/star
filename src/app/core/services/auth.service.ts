@@ -3,6 +3,7 @@ import { JwtTokenService } from './jwt-token.service';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { CookieService } from './cookie.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +25,12 @@ export class AuthService {
   }
 
   logout(){
-    this.cookieService.remove('token17angular');
+    this.cookieService.remove(environment.token);
     this.router.navigateByUrl('/login');
   }
 
   isLoggedIn() {
-    const token = this.cookieService.get('token17angular');
+    const token = this.cookieService.get(environment.token);
     return !!token;
   }
 }

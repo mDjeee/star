@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://swapi.dev'
+  apiUrl: 'https://swapi.dev',
+  token: 'token17angular'
 };
