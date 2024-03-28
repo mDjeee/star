@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loadPlanets } from './species.actions';
+import { loadSpecies } from './species.actions';
 import { speciesSelector } from './species.selector';
 
 
@@ -10,9 +10,9 @@ import { speciesSelector } from './species.selector';
 export class SpeciesFacade {
   constructor(private store: Store) { }
 
-  public planets$ = this.store.select(speciesSelector);
+  public species$ = this.store.select(speciesSelector);
 
-  fetchPlanets(page: number = 1) {
-    this.store.dispatch(loadPlanets({ loading: true, page }));
+  fetchSpecies(page: number = 1) {
+    this.store.dispatch(loadSpecies({ loading: true, page }));
   }
 }
