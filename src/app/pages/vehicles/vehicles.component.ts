@@ -1,10 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { VehiclesFacade } from '../../store/vehicles/vehicles.facade';
+import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { SharedModule } from '../../shared/shared.module';
 
 @Component({
   selector: 'app-vehicles',
   standalone: true,
-  imports: [],
+  imports: [
+    AsyncPipe,
+    NgForOf,
+    NgIf,
+    SharedModule
+  ],
   templateUrl: './vehicles.component.html',
   styleUrl: './vehicles.component.scss'
 })

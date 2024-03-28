@@ -1,1 +1,78 @@
-<p>vehicles works!</p>
+<div class="flex flex-col gap-2">
+
+  <ng-container *ngIf="vehiclesFacade.vehicles$ | async as vehiclesModel">
+
+    <div class="flex sm:flex-col md:flex-col lg:flex-row gap-2 justify-between my-2">
+      <div class="text-xl font-bold">
+        Vehicles
+      </div>
+
+      <app-pagination
+        (emitPage)="pageChanged($event)"
+        [count]="vehiclesModel.count"
+        [next]="vehiclesModel.next"
+        [previous]="vehiclesModel.previous"
+        [loading]="vehiclesModel.loading"
+      ></app-pagination>
+    </div>
+
+    <div class="grid gap-2 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+      <ng-container *ngIf="vehiclesModel.loading">
+        <app-card-loader *ngFor="let c of [1,2,3,4,5]"></app-card-loader>
+      </ng-container>
+
+      <div *ngFor="let card of vehiclesModel.vehicles | mapChips">
+        <app-card [card]="card">
+          <ng-template #cardTitleTemplate>
+            <div>{{ card.name }}</div>
+          </ng-template>
+          <ng-template #cardSubTitleTemplate>
+            <div class="flex flex-col">
+              <div class="flex justify-between">
+                <div>Model</div>
+                <div class="text-end">{{ card.model }}</div>
+              </div>
+              <div class="flex justify-between">
+                <div>Class</div>
+                <div class="text-end">{{ card.starship_class }}</div>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template #cardCaptionTemplate>
+            <div class="flex justify-between">
+              <div>Cost in credits</div>
+              <div>{{ card.cost_in_credits }}</div>
+            </div>
+          </ng-template>
+
+          <ng-template #cardBodyTemplate>
+            <ul>
+              <li>Length: {{ card?.length }}</li>
+              <li>Max atmosphering speed: {{ card?.max_atmosphering_speed }}</li>
+              <li>Crew: {{ card?.crew }}</li>
+              <li>Passengers: {{ card?.passengers }}</li>
+              <li>Cargo capacity: {{ card?.cargo_capacity }}</li>
+              <li>Consumables: {{ card?.consumables }}</li>
+              <li>Hyperdrive rating: {{ card?.hyperdrive_rating }}</li>
+              <li>MGLT: {{ card?.MGLT }}</li>
+              <li>Manufacturer: {{ card?.manufacturer }}</li>
+            </ul>
+          </ng-template>
+
+          <ng-template #cardChipsTemplate>
+            <ul>
+              <li
+                *ngFor="let item of card.chips"
+                class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              >
+                #{{ item.name }} ({{ item.val }})
+              </li>
+
+            </ul>
+          </ng-template>
+        </app-card>
+      </div>
+    </div>
+  </ng-container>
+</div>
