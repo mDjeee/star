@@ -2,19 +2,7 @@
 
   <ng-container *ngIf="peopleFacade.people$ | async as peopleModel">
 
-    <div class="flex sm:flex-col md:flex-col lg:flex-row gap-2 justify-between my-2">
-      <div class="text-xl font-bold">
-        People
-      </div>
-
-      <app-pagination
-        (emitPage)="pageChanged($event)"
-        [count]="peopleModel.count"
-        [next]="peopleModel.next"
-        [previous]="peopleModel.previous"
-        [loading]="peopleModel.loading"
-      ></app-pagination>
-    </div>
+    <app-page-header (pageChanged)="pageChanged($event)" [model]="peopleModel" title="People" />
 
     <div class="grid gap-2 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
       <ng-container *ngIf="peopleModel.loading">
