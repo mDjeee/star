@@ -1,0 +1,13 @@
+<div class="flex sm:flex-col md:flex-col lg:flex-row gap-2 justify-between my-2">
+  <div class="text-xl font-bold">
+    {{ title }}
+  </div>
+
+  <app-pagination
+    (emitPage)="changePage($event)"
+    [count]="model.count"
+    [next]="model.next"
+    [previous]="model.previous"
+    [loading]="model.loading"
+  ></app-pagination>
+</div>

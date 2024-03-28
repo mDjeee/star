@@ -2,19 +2,7 @@
 
   <ng-container *ngIf="vehiclesFacade.vehicles$ | async as vehiclesModel">
 
-    <div class="flex sm:flex-col md:flex-col lg:flex-row gap-2 justify-between my-2">
-      <div class="text-xl font-bold">
-        Vehicles
-      </div>
-
-      <app-pagination
-        (emitPage)="pageChanged($event)"
-        [count]="vehiclesModel.count"
-        [next]="vehiclesModel.next"
-        [previous]="vehiclesModel.previous"
-        [loading]="vehiclesModel.loading"
-      ></app-pagination>
-    </div>
+    <app-page-header (pageChanged)="pageChanged($event)" [model]="vehiclesModel" title="Vehicles" />
 
     <div class="grid gap-2 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
       <ng-container *ngIf="vehiclesModel.loading">
