@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
 import { IPeopleResponse, IPerson } from '../../shared/interfaces/people.interface';
+import { apiPeopleUrl } from '../../../constants/endpoints.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +10,12 @@ export class PeopleService {
 
   constructor(private http: HttpClient) { }
 
-  getPeople() {
-    return this.http.get<IPeopleResponse>(environment.apiUrl + '/api/people');
+  getPeople(page: number = 1) {
+    const query = page <= 1 ? '' : `?page=${page}`
+    return this.http.get<IPeopleResponse>(apiPeopleUrl + query);
   }
 
   getPersonById(id: string) {
-    return this.http.get<IPerson>(environment.apiUrl + '/api/people/' + id);
+    return this.http.get<IPerson>(apiPeopleUrl + id);
   }
 }
