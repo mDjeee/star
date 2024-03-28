@@ -4,11 +4,17 @@ import { loadSpecies, loadSpeciesFail, loadSpeciesSuccess } from './species.acti
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import { ISpeciesResponse } from '../../shared/interfaces/species.interface';
 import { SpeciesService } from '../../core/services/species.service';
+import { AlertService } from '../../core/services/alert.service';
+import { AlertType } from '../../shared/enums/alert.enum';
 
 
 @Injectable()
 export class SpeciesEffects {
-  constructor(private action$: Actions, private speciesService: SpeciesService) {
+  constructor(
+    private action$: Actions,
+    private speciesService: SpeciesService,
+    private toastService: AlertService,
+    ) {
   }
 
   loadSpecies$ = createEffect(() =>
@@ -23,7 +29,13 @@ export class SpeciesEffects {
             species: data.results,
             loading: false,
           })),
-          catchError((err) => of(loadSpeciesFail({ error: err.message, loading: false })))
+          catchError((err) => {
+            this.toastService.setAlert({
+              type: AlertType.danger,
+              text: err.message
+            })
+            return of(loadSpeciesFail({ error: err.message, loading: false }))
+          })
         )
       })
     )

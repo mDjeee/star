@@ -4,11 +4,17 @@ import { loadFilms, loadFilmsFail, loadFilmsSuccess } from './films.actions';
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import { IFilmResponse } from '../../shared/interfaces/films.interface';
 import { FilmsService } from '../../core/services/films.service';
+import { AlertService } from '../../core/services/alert.service';
+import { AlertType } from '../../shared/enums/alert.enum';
 
 
 @Injectable()
 export class FilmsEffects {
-  constructor(private action$: Actions, private filmsService: FilmsService) {
+  constructor(
+    private action$: Actions,
+    private filmsService: FilmsService,
+    private toastService: AlertService,
+    ) {
   }
 
   loadFilms$ = createEffect(() =>
@@ -23,7 +29,13 @@ export class FilmsEffects {
             films: data.results,
             loading: false,
           })),
-          catchError((err) => of(loadFilmsFail({ error: err.message, loading: false })))
+          catchError((err) => {
+            this.toastService.setAlert({
+              type: AlertType.danger,
+              text: err.message
+            })
+            return of(loadFilmsFail({ error: err.message, loading: false }))
+          })
         )
       })
     )

@@ -4,11 +4,17 @@ import { loadPlanets, loadPlanetsFail, loadPlanetsSuccess } from './planets.acti
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import { PlanetsService } from '../../core/services/planets.service';
 import { IPlanetResponse } from '../../shared/interfaces/planets.interface';
+import { AlertService } from '../../core/services/alert.service';
+import { AlertType } from '../../shared/enums/alert.enum';
 
 
 @Injectable()
 export class PlanetsEffects {
-  constructor(private action$: Actions, private planetsService: PlanetsService) {
+  constructor(
+    private action$: Actions,
+    private planetsService: PlanetsService,
+    private toastService: AlertService,
+    ) {
   }
 
   loadPlanets$ = createEffect(() =>
@@ -23,7 +29,13 @@ export class PlanetsEffects {
             planets: data.results,
             loading: false,
           })),
-          catchError((err) => of(loadPlanetsFail({ error: err.message, loading: false })))
+          catchError((err) => {
+            this.toastService.setAlert({
+              type: AlertType.danger,
+              text: err.message
+            })
+            return of(loadPlanetsFail({ error: err.message, loading: false }))
+          })
         )
       })
     )

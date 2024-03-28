@@ -4,11 +4,17 @@ import { loadStarships, loadStarshipsFail, loadStarshipsSuccess } from './starsh
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import { StarshipsService } from '../../core/services/starships.service';
 import { IStarshipsResponse } from '../../shared/interfaces/starships.interface';
+import { AlertService } from '../../core/services/alert.service';
+import { AlertType } from '../../shared/enums/alert.enum';
 
 
 @Injectable()
 export class StarshipsEffects {
-  constructor(private action$: Actions, private starshipsService: StarshipsService) {
+  constructor(
+    private action$: Actions,
+    private starshipsService: StarshipsService,
+    private toastService: AlertService,
+    ) {
   }
 
   loadStarships$ = createEffect(() =>
@@ -23,7 +29,13 @@ export class StarshipsEffects {
             starships: data.results,
             loading: false,
           })),
-          catchError((err) => of(loadStarshipsFail({ error: err.message, loading: false })))
+          catchError((err) => {
+            this.toastService.setAlert({
+              type: AlertType.danger,
+              text: err.message
+            })
+            return of(loadStarshipsFail({ error: err.message, loading: false }));
+          })
         )
       })
     )

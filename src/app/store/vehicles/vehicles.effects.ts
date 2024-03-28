@@ -4,11 +4,17 @@ import { loadVehicles, loadVehiclesFail, loadVehiclesSuccess } from './vehicles.
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import { VehiclesService } from '../../core/services/vehicles.service';
 import { IVehiclesResponse } from '../../shared/interfaces/vehicles.interface';
+import { AlertService } from '../../core/services/alert.service';
+import { AlertType } from '../../shared/enums/alert.enum';
 
 
 @Injectable()
 export class VehiclesEffects {
-  constructor(private action$: Actions, private vehicleService: VehiclesService) {
+  constructor(
+    private action$: Actions,
+    private vehicleService: VehiclesService,
+    private toastService: AlertService,
+    ) {
   }
 
   loadVehicles$ = createEffect(() =>
@@ -23,7 +29,13 @@ export class VehiclesEffects {
             vehicles: data.results,
             loading: false,
           })),
-          catchError((err) => of(loadVehiclesFail({ error: err.message, loading: false })))
+          catchError((err) => {
+            this.toastService.setAlert({
+              type: AlertType.danger,
+              text: err.message
+            })
+            return of(loadVehiclesFail({ error: err.message, loading: false }))
+          })
         )
       })
     )
