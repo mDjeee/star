@@ -1,4 +1,3 @@
-import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { loadPlanets } from './planets.actions';
@@ -17,10 +16,3 @@ export class PlanetsFacade {
     this.store.dispatch(loadPlanets({ loading: true, page }));
   }
 }
-
-
-// planets$: Observable<any> = of([]);
-// next$: Observable<string | null> = of(null);
-// previous$: Observable<string | null> = of(null);
-// loading$: Observable<boolean | null> = of(false);
-// count$: Observable<number> = of(0);
