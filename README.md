@@ -1,27 +1,45 @@
-# Star
+# Star Wars
+### Angular app
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
+Welcome to our Angular application for exploring Star Wars universe! In this application you can discover Characters, Species, Planets, Starships, Vehicles, and Films.
+Site deploy is available via this link [Star Wars](https://star-wars-mdjeee.netlify.app)
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This README file provides an overview of the technologies used in this project. The project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
 
-## Code scaffolding
+## Technologies Used
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Frontend Framework
+- **Angular**: Version 17.3
 
-## Build
+### Dependencies
+- **RxJs**: Version 7.8
+- **TailwindCss**: Version 3.4
+- **NgRx**: Version 17.1
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Build Tools
+- **Node.js**: Version: ^18.13
+- **npm**: Version: 10.2
+- **Angular Cli**: Version: 17.3
 
-## Running unit tests
+## Getting started
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Clone this repository
+```bash
+git clone https://github.com/mDjeee/star.git
+```
 
-## Running end-to-end tests
+### Install dependencies
+```bash
+npm i
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Dev
+```bash
+npm run start
+```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Build
+```bash
+npm run build
+```

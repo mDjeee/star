@@ -1,0 +1,53 @@
+<div class="flex flex-col gap-2">
+
+  <ng-container *ngIf="planetsFacade.planets$ | async as planetsModel">
+
+    <app-page-header (pageChanged)="pageChanged($event)" [model]="planetsModel" title="Planets" />
+
+    <app-error *ngIf="planetsModel.error" [error]="planetsModel.error"></app-error>
+
+    <div class="grid gap-2 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+      <ng-container *ngIf="planetsModel.loading">
+        <app-card-loader *ngFor="let c of [1,2,3,4,5]"></app-card-loader>
+      </ng-container>
+      <div *ngFor="let card of planetsModel.planets | mapChips">
+        <app-card [card]="card">
+          <ng-template #cardTitleTemplate>
+            <div>{{ card.name }}</div>
+          </ng-template>
+          <ng-template #cardSubTitleTemplate>
+            <div class="flex flex-col">
+              <div>Population: {{ card.population }}</div>
+              <div>Diameter: {{card.diameter}}</div>
+            </div>
+          </ng-template>
+
+          <ng-template #cardBodyTemplate>
+            <div class="flex flex-col">
+              <div>Climate: {{ card.climate }}</div>
+              <div>Terrain: {{ card.terrain }}</div>
+              <div>Gravity: {{ card.cravity }}</div>
+              <div>Orbital period: {{ card.orbital_period }}</div>
+              <div>Rotation period: {{ card.rotation_period }}</div>
+              <div>Surface water: {{ card.surface_water }}</div>
+            </div>
+          </ng-template>
+
+          <ng-template #cardChipsTemplate>
+            <ul>
+              <li
+                *ngFor="let item of card.chips"
+                class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              >
+                #{{ item.name }} ({{ item.val }})
+              </li>
+
+            </ul>
+          </ng-template>
+        </app-card>
+
+      </div>
+    </div>
+  </ng-container>
+
+</div>

@@ -1,0 +1,18 @@
+<div class="flex items-center">
+  <button
+    *ngIf="isWindowSmall"
+    (click)="openMenu()"
+    class="w-8 h-6 rounded-full flex flex-col items-center justify-center focus:outline-none"
+  >
+    <span class="block w-full h-[2px] bg-white"></span>
+    <span class="block mt-2 w-full h-[2px] bg-white"></span>
+    <span class="block mt-2 w-full h-[2px] bg-white"></span>
+  </button>
+  <div
+    class="flex gap-2"
+    *ngIf="!isWindowSmall"
+  >
+    <app-nav></app-nav>
+    <app-user-nav></app-user-nav>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<div
+  *ngIf="alert"
+  [ngClass]="['alert', alert.type]"
+>
+  <div class="">
+    {{ alert.text }}
+  </div>
+</div>

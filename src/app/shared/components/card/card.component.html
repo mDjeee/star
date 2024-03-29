@@ -1,24 +1,31 @@
-<div class="relative group w-full h-full cursor-pointer rounded flex bg-gray-900 flex-col overflow-hidden shadow-lg px-6">
-  <div class="w-full font-bold my-2">
-    <ng-container *ngTemplateOutlet="cardTitle"></ng-container>
-  </div>
+<div
+  @listAnimation
+  class="relative group w-full h-full cursor-pointer rounded flex bg-gray-900 flex-col overflow-hidden shadow-lg px-6"
+  [@cardRotateAnimation]="state"
+  (click)="toggleCard()"
+  #cardContainer
+>
+  <div>
+    <div class="w-full font-bold my-2">
+      <ng-container *ngTemplateOutlet="cardTitle"></ng-container>
+    </div>
 
-  <ng-container *ngTemplateOutlet="cardSubTitle"></ng-container>
+    <ng-container *ngTemplateOutlet="cardSubTitle"></ng-container>
 
-  <div class="pt-2">
-    <ng-container *ngTemplateOutlet="cardCaption"></ng-container>
-  </div>
+    <div class="pt-2">
+      <ng-container *ngTemplateOutlet="cardCaption"></ng-container>
+    </div>
 
-  <div class="py-4 mb-2 text-gray-500 text-base">
-    <ng-container *ngTemplateOutlet="cardBody"></ng-container>
-  </div>
+    <div class="py-4 mb-2 text-gray-500 text-base">
+      <ng-container *ngTemplateOutlet="cardBody"></ng-container>
+    </div>
 
-  <div class="text-gray-700 mt-auto justify-end text-end">
-    <ng-container *ngTemplateOutlet="cardChips"></ng-container>
-  </div>
+    <div class="text-gray-700 mt-auto justify-end text-end">
+      <ng-container *ngTemplateOutlet="cardChips"></ng-container>
+    </div>
 
-  <div
-    class="
+    <div
+      class="
       w-12 h-12
       absolute -bottom-6 -left-6
       rotate-45
@@ -26,5 +33,17 @@
       group-hover:bg-gray-300
       group-hover:transition-all duration-500 ease-in-out
     "
-  ></div>
+    ></div>
+  </div>
+
+
 </div>
+
+<ng-template #back>
+  <div
+    class="card-bg"
+    [ngStyle]="{
+      'height' : cardHeight
+    }"
+  ></div>
+</ng-template>

@@ -1,0 +1,64 @@
+<div class="flex flex-col gap-2">
+
+  <ng-container *ngIf="speciesFacade.species$ | async as speciesModel">
+
+    <app-page-header (pageChanged)="pageChanged($event)" [model]="speciesModel" title="Species" />
+
+    <app-error *ngIf="speciesModel.error" [error]="speciesModel.error"></app-error>
+
+    <div class="grid gap-2 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+      <ng-container *ngIf="speciesModel.loading">
+        <app-card-loader *ngFor="let c of [1,2,3,4,5]"></app-card-loader>
+      </ng-container>
+
+      <div *ngFor="let card of speciesModel.species | mapChips">
+        <app-card [card]="card">
+          <ng-template #cardTitleTemplate>
+            <div>{{ card.name }}</div>
+          </ng-template>
+          <ng-template #cardSubTitleTemplate>
+            <div class="flex flex-col">
+              <div class="flex justify-between">
+                <div>Classification</div>
+                <div>{{ card.classification }}</div>
+              </div>
+              <div class="flex justify-between">
+                <div>Designation</div>
+                <div>{{ card.designation }}</div>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template #cardCaptionTemplate>
+            <div class="flex justify-between">
+              <div>Average lifespan</div>
+              <div>{{ card.average_lifespan }}</div>
+            </div>
+          </ng-template>
+
+          <ng-template #cardBodyTemplate>
+            <ul>
+              <li>Language: {{ card?.language }}</li>
+              <li>Average height: {{ card?.average_height }}</li>
+              <li>Hair colors: {{ card?.hair_colors }}</li>
+              <li>Eye colors: {{ card?.eye_colors }}</li>
+              <li>Skin colors: {{ card?.skin_colors }}</li>
+            </ul>
+          </ng-template>
+
+          <ng-template #cardChipsTemplate>
+            <ul>
+              <li
+                *ngFor="let item of card.chips"
+                class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              >
+                #{{ item.name }} ({{ item.val }})
+              </li>
+
+            </ul>
+          </ng-template>
+        </app-card>
+      </div>
+    </div>
+  </ng-container>
+</div>

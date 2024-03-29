@@ -15,7 +15,7 @@ export class MapChipsPipe<T extends { [s: string]: unknown; }> implements PipeTr
   private mapChips(card: T): any[] {
     const chipObject: any[] = [];
     for (const [key, val] of Object.entries(card)) {
-      if (Array.isArray(val)) {
+      if (Array.isArray(val) && val.length) {
         chipObject.push({
           name: key,
           val: val.length

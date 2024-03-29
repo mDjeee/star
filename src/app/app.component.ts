@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { CoreModule } from './core/core.module';
-import { fader, slider } from './route-animations';
+import { slideInAnimation } from './animations/route-animations';
+import { ToastComponent } from './shared/components/toast/toast.component';
+import { SharedModule } from './shared/shared.module';
+import { ToggleService } from './core/services/toggle.service';
 
 @Component({
   selector: 'app-root',
@@ -9,19 +12,29 @@ import { fader, slider } from './route-animations';
   imports: [
     RouterOutlet,
     CoreModule,
+    ToastComponent,
+    SharedModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   animations: [
-    fader,
-    slider
+    slideInAnimation,
   ]
 })
 export class AppComponent implements OnInit {
   title = 'Star Wars';
+  isOpen: boolean = false;
 
-  constructor() {}
+  constructor(private toggleService: ToggleService) {}
 
   ngOnInit(): void {
+    this.toggleService.isOpen.subscribe((value) => {
+      this.isOpen = value;
+    })
   }
+
+  prepareRoute(outlet: RouterOutlet){
+    return outlet.activatedRouteData['state'];
+  }
+
 }

@@ -1,0 +1,7 @@
+<nav class="py-2">
+  <ul class="flex gap-4 text-xl inter-400 capitalize flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row">
+    <li *ngFor="let item of navItems">
+      <app-nav-link [link]="item" ></app-nav-link>
+    </li>
+  </ul>
+</nav>
