@@ -11,6 +11,9 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { UserNavComponent } from './components/user-nav/user-nav.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { ErrorComponent } from './components/error/error.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { NavComponent } from './components/nav/nav.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 
@@ -26,6 +29,9 @@ import { ErrorComponent } from './components/error/error.component';
     UserNavComponent,
     UserCardComponent,
     ErrorComponent,
+    NavComponent,
+    MenuComponent,
+    SidebarComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +50,9 @@ import { ErrorComponent } from './components/error/error.component';
     UserNavComponent,
     UserCardComponent,
     ErrorComponent,
+    NavComponent,
+    MenuComponent,
+    SidebarComponent,
   ]
 })
 export class SharedModule { }
