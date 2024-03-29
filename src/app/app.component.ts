@@ -3,8 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { slideInAnimation } from './animations/route-animations';
 import { ToastComponent } from './shared/components/toast/toast.component';
-import { AlertService } from './core/services/alert.service';
-import { AlertType } from './shared/enums/alert.enum';
+import { SharedModule } from './shared/shared.module';
+import { ToggleService } from './core/services/toggle.service';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +13,7 @@ import { AlertType } from './shared/enums/alert.enum';
     RouterOutlet,
     CoreModule,
     ToastComponent,
+    SharedModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -22,20 +23,18 @@ import { AlertType } from './shared/enums/alert.enum';
 })
 export class AppComponent implements OnInit {
   title = 'Star Wars';
+  isOpen: boolean = false;
 
-  constructor(private toastService: AlertService) {}
+  constructor(private toggleService: ToggleService) {}
 
   ngOnInit(): void {
+    this.toggleService.isOpen.subscribe((value) => {
+      this.isOpen = value;
+    })
   }
 
   prepareRoute(outlet: RouterOutlet){
     return outlet.activatedRouteData['state'];
   }
 
-  showToast(type: AlertType) {
-    this.toastService.setAlert({
-      type,
-      text: 'This is test alert'
-    })
-  }
 }

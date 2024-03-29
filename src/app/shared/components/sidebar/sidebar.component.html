@@ -1,2 +1,9 @@
-<app-nav></app-nav>
-<app-user-nav></app-user-nav>
+<div class="h-full flex justify-between min-w-[320px] p-4 bg-gray-900">
+  <div>
+    <button (click)="closeSideBar()">Close</button>
+  </div>
+  <div class="flex h-full flex-col justify-between">
+    <app-nav></app-nav>
+    <app-user-nav></app-user-nav>
+  </div>
+</div>

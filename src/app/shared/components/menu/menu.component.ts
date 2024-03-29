@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent, Subject, Subscription, takeUntil } from 'rxjs';
+import { ToggleService } from '../../../core/services/toggle.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,13 +8,15 @@ import { fromEvent, Subject, Subscription, takeUntil } from 'rxjs';
   styleUrl: './menu.component.scss'
 })
 export class MenuComponent implements OnInit, OnDestroy {
-  isOpen: boolean = false;
   private destroyed = new Subject();
   private resizeSubscription!: Subscription;
   public isWindowSmall = false;
 
-  openMenu() {
+  constructor(private toggleService: ToggleService) {
+  }
 
+  openMenu() {
+    this.toggleService.isOpen.next(true);
   }
 
   ngOnInit(): void {
@@ -24,6 +27,9 @@ export class MenuComponent implements OnInit, OnDestroy {
       )
       .subscribe(() => {
         this.isWindowSmall = window.innerWidth < 768;
+        if(!this.isWindowSmall) {
+          this.toggleService.isOpen.next(false)
+        }
       });
   }
 
