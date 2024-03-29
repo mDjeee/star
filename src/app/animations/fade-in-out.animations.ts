@@ -7,7 +7,7 @@ import {
   trigger
 } from '@angular/animations';
 
-export const FADEINOUT = trigger('listAnimation', [
+export const fadeInOut = trigger('listAnimation', [
   transition('* => *', [
     query(':leave', [stagger(100, [animate('0.5s', style({ opacity: 0 }))])], {
       optional: true

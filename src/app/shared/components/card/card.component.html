@@ -1,5 +1,9 @@
 <div
-  @listAnimation class="relative group w-full h-full cursor-pointer rounded flex bg-gray-900 flex-col overflow-hidden shadow-lg px-6">
+  @listAnimation
+  class="relative group w-full h-full cursor-pointer rounded flex bg-gray-900 flex-col overflow-hidden shadow-lg px-6"
+  [@cardRotateAnimation]="state"
+  (click)="toggleCard()"
+>
   <div class="w-full font-bold my-2">
     <ng-container *ngTemplateOutlet="cardTitle"></ng-container>
   </div>
