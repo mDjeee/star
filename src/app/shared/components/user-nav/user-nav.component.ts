@@ -17,10 +17,6 @@ export class UserNavComponent implements OnInit, OnDestroy {
     return this.authService.isLoggedIn();
   }
 
-  logout() {
-    this.authService.logout();
-  }
-
   ngOnInit(): void {
     this.toggleService.isOpen.pipe(
       takeUntil(this.destroyed)

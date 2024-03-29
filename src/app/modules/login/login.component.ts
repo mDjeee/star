@@ -1,8 +1,16 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors, ValidatorFn,
+  Validators
+} from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { JwtTokenService } from '../../core/services/jwt-token.service';
-import { AuthService } from '../../core/services/auth.service';
+import { AuthFacade } from '../../store/auth/auth.facade';
+import { AlertService } from '../../core/services/alert.service';
+import { AlertType } from '../../shared/enums/alert.enum';
 
 @Component({
   selector: 'app-login',
@@ -16,19 +24,23 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
+    private toastService: AlertService,
+    public authFacade: AuthFacade,
     ) {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
     })
   }
 
   onSubmit() {
     if(this.loginForm.valid) {
-      this.authService.signIn(this.loginForm.value);
+      this.authFacade.fetchAuth(this.loginForm.value);
     } else {
-      console.log('Login Form does not valid');
+      this.toastService.setAlert({
+        type: AlertType.danger,
+        text: 'Login Form does not valid'
+      });
     }
   }
 }
