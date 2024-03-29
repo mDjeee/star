@@ -1,7 +1,11 @@
 # Star Wars
 ### Angular app
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
+Welcome to our Angular application for exploring Star Wars universe! In this application you can discover Characters, Species, Planets, Starships, Vehicles, and Films.
+
+This README file provides an overview of the technologies used in this project. The project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
+
+## Technologies Used
 
 ### Frontend Framework
 - **Angular**: Version 17.3
