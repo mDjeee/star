@@ -28,6 +28,8 @@ import { StarshipsEffects } from './store/starships/starships.effects';
 import { vehiclesReducer } from './store/vehicles/vehicles.reducer';
 import { VehiclesEffects } from './store/vehicles/vehicles.effects';
 import { BrowserModule } from '@angular/platform-browser';
+import { authReducer } from './store/auth/auth.reducer';
+import { AuthEffects } from './store/auth/auth.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -50,6 +52,7 @@ export const appConfig: ApplicationConfig = {
       species: speciesReducer,
       starships: starshipsReducer,
       vehicles: vehiclesReducer,
+      auth: authReducer,
     }),
     provideEffects([
       PlanetsEffects,
@@ -58,6 +61,7 @@ export const appConfig: ApplicationConfig = {
       SpeciesEffects,
       StarshipsEffects,
       VehiclesEffects,
+      AuthEffects,
     ]),
     provideRouterStore({ }),
     provideStoreDevtools({
