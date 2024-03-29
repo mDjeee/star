@@ -2,17 +2,18 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
 
-## Install dependencies
+## To run application use
+### Install dependencies
 ```bash
 npm i
 ```
 
-## Development server
+### run
 ```bash
 npm run start
 ```
 
-## Buil
+### build
 ```bash
 npm run build
 ```
