@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors, ValidatorFn,
+  Validators
+} from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { AuthFacade } from '../../store/auth/auth.facade';
 import { AlertService } from '../../core/services/alert.service';
@@ -21,8 +28,8 @@ export class LoginComponent {
     public authFacade: AuthFacade,
     ) {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
     })
   }
 

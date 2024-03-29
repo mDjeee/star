@@ -36,7 +36,7 @@ export class AuthService {
   logout(){
     this.cookieService.remove(environment.token);
     this.router.navigateByUrl('/login');
-    return of()
+    return of({ user: null, token: null, loading: false, error: '' })
   }
 
   isLoggedIn() {

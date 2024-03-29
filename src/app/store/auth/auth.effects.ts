@@ -46,10 +46,10 @@ export class AuthEffects {
       ofType(logoutAuth),
       exhaustMap((action) => {
         return this.authService.logout().pipe(
-          map(() => logoutAuthSuccess({
+          map((data: AuthModel) => logoutAuthSuccess({
             loading: false,
-            user: action.user,
-            token: null
+            user: data.user,
+            token: data.token
           })),
           catchError((err) => {
             this.toastService.setAlert({

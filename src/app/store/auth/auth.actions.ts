@@ -22,19 +22,27 @@ export const loadAuthSuccess = createAction(
     error: string
   }>()
 );
-export const loadAuthFail = createAction(LOAD_AUTH_FAIL, props<{ error: string, loading: boolean }>());
+export const loadAuthFail = createAction(
+  LOAD_AUTH_FAIL,
+  props<{ error: string, loading: boolean }>()
+);
 
 
 export const logoutAuth = createAction(LOGOUT_AUTH, props<{
   loading: boolean,
-  user: null,
+  user: IUser | null,
 }>());
+
 export const logoutAuthSuccess = createAction(
   LOGOUT_AUTH_SUCCESS,
   props<{
     loading: boolean,
-    user: null,
-    token: null
+    user: IUser | null,
+    token: string | null
   }>()
 );
-export const logoutAuthFail = createAction(LOGOUT_AUTH_FAIL, props<{ error: string, loading: boolean }>());
+
+export const logoutAuthFail = createAction(
+  LOGOUT_AUTH_FAIL,
+  props<{ error: string, loading: boolean }>()
+);
